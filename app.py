@@ -18,8 +18,12 @@ def extract_text_easyocr(image):
 
 # Function to extract text using Hugging Face model
 def extract_text_hf(image):
+    # Convert image to pixel values
     pixel_values = processor(images=image, return_tensors="pt").pixel_values
-    generated_ids = model.generate(pixel_values)
+    # Use torch.no_grad() for inference to save memory and computations
+    with torch.no_grad():
+        generated_ids = model.generate(pixel_values)
+    # Decode the generated IDs to text
     generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
     return generated_text
 
