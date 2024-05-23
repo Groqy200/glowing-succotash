@@ -1,0 +1,7 @@
+
+streamlit 
+easyocr 
+transformers 
+torch 
+torchvision 
+pymupdf
