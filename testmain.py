@@ -1,4 +1,5 @@
 import streamlit as st
+from PIL import Image
 from easyocr import Reader
 
 # Create an EasyOCR reader
@@ -14,9 +15,12 @@ if image is not None:
     # Display uploaded image
     st.image(image, caption='Uploaded Image', use_column_width=True)
 
+    # Convert uploaded image to PIL format
+    img = Image.open(image)
+
     # Perform OCR on the uploaded image
     with st.spinner('Performing OCR...'):
-        result = reader.readtext(image)
+        result = reader.readtext(img)
 
     # Display OCR result
     st.subheader('OCR Result:')
