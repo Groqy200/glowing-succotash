@@ -1,28 +1,24 @@
 import streamlit as st
+import easyocr
 from PIL import Image
-from easyocr import Reader
 
-# Create an EasyOCR reader
-reader = Reader(['en'])
+# Initialize EasyOCR reader
+reader = easyocr.Reader(['en'], gpu=False, platform='tf')
 
-# Streamlit app
-st.title('OCR Web App')
+st.title("OCR Web App")
 
-# Upload image
-image = st.file_uploader("Upload Image", type=['jpg', 'png', 'jpeg'])
+uploaded_file = st.file_uploader("Upload an Image", type=["jpg", "jpeg", "png"])
 
-if image is not None:
-    # Display uploaded image
+if uploaded_file is not None:
+    image = Image.open(uploaded_file)
     st.image(image, caption='Uploaded Image', use_column_width=True)
 
-    # Convert uploaded image to PIL format
-    img = Image.open(image)
+    # Perform OCR
+    ocr_result = reader.readtext(image)
 
-    # Perform OCR on the uploaded image
-    with st.spinner('Performing OCR...'):
-        result = reader.readtext(img)
-
-    # Display OCR result
-    st.subheader('OCR Result:')
-    for detection in result:
-        st.write(detection[1])
+    # Display OCR output
+    st.write("---")
+    st.subheader("OCR Output")
+    for line in ocr_result:
+        text, _ = line
+        st.write(text)
