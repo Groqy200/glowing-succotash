@@ -1,5 +1,5 @@
 import streamlit as st
-from easyocr import Reader
+from easyocr
 import pandas as pd
 import cv2
 from PIL import Image
@@ -11,7 +11,7 @@ def streamlit_progress_hook(count, block_size, total_size):
 
 
 # Initialize the EasyOCR reader with custom progress hook
-reader = Reader(['en'], download_progress_hook=streamlit_progress_hook)
+reader = easyocr.Reader(['en'], download_progress_hook=streamlit_progress_hook)
 
 # Streamlit app
 st.title('OCR Web App')
