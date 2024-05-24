@@ -25,7 +25,7 @@ if uploaded_file is not None:
     st.image(image, caption='Uploaded Image.', use_column_width=True)
 
     # Perform OCR
-    result = reader.readtext(np.array(image))
+    result = reader.readtext(image)
 
     # Display the OCR output
     st.write("OCR Output:")
