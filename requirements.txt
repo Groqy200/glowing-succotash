@@ -1,9 +1,9 @@
 PIL
-streamlit 
-easyocr 
-transformers 
-torch 
-torchvision 
+streamlit
+easyOCR
+transformers
+torch
+torchvision
 pymupdf
 numpy
 pillow
