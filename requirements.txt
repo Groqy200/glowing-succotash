@@ -6,3 +6,4 @@ torch
 torchvision 
 pymupdf
 numpy
+pillow
