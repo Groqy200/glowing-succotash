@@ -1,6 +1,6 @@
 import streamlit as st
 import easyocr
-from PIL import Image
+from pillow import Image
 
 # Initialize EasyOCR reader
 reader = easyocr.Reader(['en'], gpu=False, platform='tf')
