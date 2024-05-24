@@ -1,5 +1,5 @@
 import streamlit as st
-from easyocr
+import easyocr
 import pandas as pd
 import cv2
 from PIL import Image
