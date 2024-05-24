@@ -19,7 +19,7 @@ def extract_text_from_image(image):
 st.title("OCR Web App")
 
 # Upload PDF document
-uploaded_file = st.file_uploader("Choose a PDF document...", type=["pdf"])
+uploaded_file = st.file_uploader("Choose a PDF document...", type=["pdf","jpg", "jpeg", "png"])
 
 # Process PDF and display text
 if uploaded_file is not None:
