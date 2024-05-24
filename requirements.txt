@@ -1,5 +1,4 @@
 easyOCR
-pymupdf
-numpy
-pillow
 Streamlit
+opencv-python
+pandas
