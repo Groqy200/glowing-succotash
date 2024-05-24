@@ -1,5 +1,5 @@
 import streamlit as st
-import easyocr
+from easyocr import Reader
 import pandas as pd
 import cv2
 from PIL import Image
@@ -8,8 +8,10 @@ def streamlit_progress_hook(count, block_size, total_size):
     percent = int(count * block_size * 100 / total_size)
     st.write(f'\rDownloading: {percent}%', end='')
     st.progress(percent / 100)
+
+
 # Initialize the EasyOCR reader with custom progress hook
-reader = easyocr.Reader(['en'], download_progress_hook=streamlit_progress_hook)
+reader = Reader(['en'], download_progress_hook=streamlit_progress_hook)
 
 # Streamlit app
 st.title('OCR Web App')
