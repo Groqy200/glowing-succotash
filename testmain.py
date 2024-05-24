@@ -4,6 +4,7 @@ import easyocr
 import numpy as np
 import tempfile
 import fitz  # Import PyMuPDF as fitz
+import io
 
 # Initialize EasyOCR reader
 reader = easyocr.Reader(['en'])
