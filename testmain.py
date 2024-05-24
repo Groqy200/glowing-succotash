@@ -1,24 +1,39 @@
 import streamlit as st
 import easyocr
-from pillow import Image
+import pandas as pd
+import cv2
+from PIL import Image
 
-# Initialize EasyOCR reader
-reader = easyocr.Reader(['en'], gpu=False, platform='tf')
+# Initialize the EasyOCR reader
+reader = easyocr.Reader(['en'])
 
-st.title("OCR Web App")
+# Streamlit app
+st.title('OCR Web App')
 
-uploaded_file = st.file_uploader("Upload an Image", type=["jpg", "jpeg", "png"])
+# File uploader
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
+    # Convert the file to an image
     image = Image.open(uploaded_file)
-    st.image(image, caption='Uploaded Image', use_column_width=True)
+    st.image(image, caption='Uploaded Image.', use_column_width=True)
 
     # Perform OCR
-    ocr_result = reader.readtext(image)
+    result = reader.readtext(np.array(image))
 
-    # Display OCR output
-    st.write("---")
-    st.subheader("OCR Output")
-    for line in ocr_result:
-        text, _ = line
-        st.write(text)
+    # Display the OCR output
+    st.write("OCR Output:")
+    for res in result:
+        st.write(res[1])
+
+    # Convert the OCR output to a DataFrame
+    df = pd.DataFrame(result, columns=['Text'])
+
+    # Download the OCR output as a .csv file
+    csv = df.to_csv(index=False).encode('utf-8')
+    st.download_button(
+        label="Download data as CSV",
+        data=csv,
+        file_name='ocr_output.csv',
+        mime='text/csv',
+    )
