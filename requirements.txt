@@ -1,7 +1,4 @@
 easyOCR
-transformers
-torch
-torchvision
 pymupdf
 numpy
 pillow
