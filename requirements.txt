@@ -3,3 +3,8 @@ Streamlit
 opencv-python
 pandas
 PyMuPDF
+pytesseract
+medusa
+layoutparser
+gobi
+opencv
